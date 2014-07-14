@@ -7,25 +7,20 @@ Grab a copy of this from hub:
 
     docker pull tswicegood/npm-cache
 
-Run this:
+You must provide a `PORT` environment variable when running this.  You should map that
+port to the container's port 80 via `-p`.  For example, if you want to use port 8080,
+you can do this:
 
-    docker run -d -P tswicegood/npm-cache
+    export PORT=8080
+    docker run -d -e PORT=$PORT -p $PORT:80 tswicegood/npm-cache
 
-Check the output from `docker ps` to see what port it's running on, then adjust your
-npm registry appropriately.  For example, if you're running on port `49153` and
-the host is `192.168.59.103`, adjust your config like this:
+Next you need to adjust npm to use this as your registry.  If you're on
+boot2docker with a host IP address of `192.168.59.103`, you need to adjust your
+config like this:
 
-    npm config set registry http://192.168.59.103:49153/
+    npm config set registry http://192.168.59.103:8080/
 
 Have fun!
 
-
-## Caveats
-
-Note, you're probably going to want to build this yourself.  It currently
-relies on running on port `49153` as mentioned above.  To fix that, you need to
-adjust the `nginx.conf` file to make sure things are rewritten to the correct
-port.  That, or manually bind to port `49153` via something like `-p 49153:80`
-when you run `docker run`.
 
 [1]: http://eng.yammer.com/a-private-npm-cache/

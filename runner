@@ -1,0 +1,8 @@
+#!/bin/bash
+if [[ -z "$PORT" ]]; then
+    echo "You must add \"-e PORT=<some port>\" when running this" >&2
+    exit 1
+fi
+
+/bin/sed -i "s/XXX_PORT_XXX/$PORT/" /etc/nginx.conf
+nginx

@@ -20,6 +20,14 @@ config like this:
 
     npm config set registry http://192.168.59.103:8080/
 
+### Configuring host
+You can configure the host name using `-e HOST=<your host>` to run this from.  For
+example, to run it on port 8080 of `npm.example.org`, you can run it like this:
+
+    export PORT=$8080
+    export HOST=npm.example.org
+    docker run -d -e HOST=$HOST -e POST=$PORT -p $PORT:80 tswicegood/npm-cache
+
 Have fun!
 
 

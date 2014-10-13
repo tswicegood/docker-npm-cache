@@ -12,5 +12,5 @@ fi
 /bin/sed -i "s/XXX_PORT_XXX/$PORT/" /etc/nginx.conf
 /bin/sed -i "s/XXX_HOST_XXX/$HOST/" /etc/nginx.conf
 
-echo "Excepting connections at $HOST:$PORT"
+echo "Accepting connections at $HOST:$PORT"
 nginx
